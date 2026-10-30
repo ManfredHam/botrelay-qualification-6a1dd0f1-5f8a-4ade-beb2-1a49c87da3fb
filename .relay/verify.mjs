@@ -26,7 +26,7 @@ assert(html.includes(proof.nonce)&&html.includes('impressum.html')&&html.include
 assert(/@media\b/.test(css)&&!/@import|url\(\s*["']?(?:https?:|\/\/|data:)/i.test(css),'responsive_local_css_required');
 assert(files.get('README.md').toString('utf8').includes(proof.nonce),'readme_binding_missing');
 const require=createRequire(path.join(process.env.RUNNER_TEMP,'relay-audit','package.json'));
-const {chromium}=await import(pathToFileURL(require.resolve('playwright-core')).href);
+const {chromium}=await import(pathToFileURL(path.join(process.env.RUNNER_TEMP,'relay-audit/node_modules/playwright-core/index.mjs')).href);
 const lighthouse=(await import(pathToFileURL(require.resolve('lighthouse')).href)).default;
 const {launch}=await import(pathToFileURL(require.resolve('chrome-launcher')).href);
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png'};
